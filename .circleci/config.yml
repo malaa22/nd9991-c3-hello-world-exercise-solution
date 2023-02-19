@@ -47,19 +47,19 @@ jobs:
                 --region us-west-2 
                 
 # Exercise: Config and Deployment
-configure_infrastructure: 
-  docker:
-    - image: 
-  steps:
-    - checkout
-    - add_ssh_keys:
+ configure_infrastructure: 
+   docker:
+     - image: python:3.7-alpine3.11 
+   steps:
+     - checkout
+     - add_ssh_keys:
             # You can get this ID in the section where you registered the SSH Key
             fingerprints: ["e4:60:cd:04:3f:21:f2:91:89:fa:f2:33:5d:3c:b5:58"] 
-    - run:
+     - run:
         name: Install Ansible
         command: |
           apk add --update ansible
-    - run:
+     - run:
         name: Run Playbook and Configure server
         command: |
            ansible-playbook -i inventory.txt main4.yml
